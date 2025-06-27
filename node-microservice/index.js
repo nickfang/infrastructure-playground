@@ -6,7 +6,10 @@ const port = process.env.PORT | 3001;
 
 app.get('/products', (req, res) => {
   res.status(200).json({
-    products: [],
+    products: [
+      { id: 1, name: 'Product 1' },
+      { id: 2, name: 'Product 2' },
+    ],
   });
 });
 
