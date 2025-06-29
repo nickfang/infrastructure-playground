@@ -27,7 +27,6 @@ phases:
       - printf '[{"name":"product-service","imageUri":"%s"}]' "$REPOSITORY_URI:$IMAGE_TAG" > imagedefinitions.json
 
 artifacts:
-  # This path is relative to the repository root. Since our 'printf' command runs inside
-  # the 'node-microservice' folder, this path correctly tells CodeBuild where to find the output file.
+  base-directory: 'node-microservice'
   files:
-    - node-microservice/imagedefinitions.json
+    - imagedefinitions.json
