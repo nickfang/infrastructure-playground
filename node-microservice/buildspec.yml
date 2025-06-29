@@ -15,7 +15,7 @@ phases:
       - cd node-microservice
       - echo "Build started on $(date)"
       - echo "Building the Docker image..."
-      - docker build -t $REPOSITORY_URI:latest.
+      - docker build -t $REPOSITORY_URI:latest .
       - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
   post_build:
     commands:
@@ -24,10 +24,6 @@ phases:
       - docker push $REPOSITORY_URI:latest
       - docker push $REPOSITORY_URI:$IMAGE_TAG
       - echo "Writing image definitions file..."
-      # FIX 2: Corrected the printf command syntax.
-      # - The format specifier must be lowercase '%s'.
-      # - The variables need to be properly concatenated.
-      # - The redirection '>' must be outside the quotes.
       - printf '[{"name":"product-service","imageUri":"%s"}]' "$REPOSITORY_URI:$IMAGE_TAG" > imagedefinitions.json
 
 artifacts:
